@@ -2,8 +2,12 @@ from datetime import datetime
 
 
 def iso_format_to_unix_time(iso_format_string):
-    return __unix_time_of(datetime.fromisoformat(iso_format_string))
-
+    if not isinstance(iso_format_string, str):
+        raise TypeError('Please provide a string argument')
+    try:
+       return __unix_time_of(datetime.fromisoformat(iso_format_string))
+    except ValueError as e:
+        raise e
 
 def __unix_time_of(dt):
     return int((dt - datetime(1970, 1, 1)).total_seconds())
