@@ -1,0 +1,1 @@
+ curl "http://localhost:5000/price-plans/compare-all/smart-meter-0"

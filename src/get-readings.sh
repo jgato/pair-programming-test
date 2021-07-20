@@ -1,0 +1,1 @@
+curl "http://localhost:5000/readings/read/smart-meter-0"
