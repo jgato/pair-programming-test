@@ -17,6 +17,8 @@ class TestElectricityReadingRepository(TestCase):
         readings = self.electricity_reading_repository.find('smart-meter-0')
         self.assertDictEqual({'time': 1507375234, 'reading': 0.5}, dataclasses.asdict(readings[0]))
         self.assertDictEqual({'time': 1510053634, 'reading': 0.75}, dataclasses.asdict(readings[1]))
+        readings = self.electricity_reading_repository.find('smart-meter-INFINITE')
+        self.assertEqual(len(readings),0)
 
     def test_add_usage_data_against_smart_meter_id_if_it_already_exists(self):
         self.electricity_reading_repository \
@@ -28,3 +30,8 @@ class TestElectricityReadingRepository(TestCase):
         self.assertIn(ElectricityReading({'time': 1507375234, 'reading': 0.5}), readings)
         self.assertIn(ElectricityReading({'time': 1510053634, 'reading': 0.75}), readings)
         self.assertIn(ElectricityReading({'time': 1510572000, 'reading': 0.32}), readings)
+    
+    def test_clear(self):
+        self.electricity_reading_repository.clear()
+        readings = self.electricity_reading_repository.find('smart-meter-0')
+        self.assertEqual(0, len(readings))
