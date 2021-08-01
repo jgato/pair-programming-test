@@ -42,3 +42,9 @@ class TestPricePlanComparatorController(unittest.TestCase):
             { "price-plan-1": 80 },
             { "price-plan-0": 400 }
         ])
+
+
+    def test_respond_with_error_if_smart_meter_id_not_exists(self):
+        invented_id ="smart-meter-INFINITE"
+        response = self.client.get('/price-plans/compare-all/' + invented_id)
+        self.assertEqual(404, response.status_code)
