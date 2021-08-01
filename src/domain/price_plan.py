@@ -10,6 +10,14 @@ class PricePlan:
                                 if m.day_of_week == date_time.isoweekday()]
         return self.unit_rate * matching_multipliers[0].multiplier if len(matching_multipliers) else self.unit_rate
 
+    def to_json(self):
+        return {   
+            "name": self.name,
+            "supplier": self.supplier,
+            "unit_rate": self.unit_rate,
+            "peak_time_multiplier": self.peak_time_multipliers
+        }
+        
     class DayOfWeek:
         SUNDAY = 0
         MONDAY = 1

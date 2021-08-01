@@ -43,3 +43,12 @@ class PricePlanService:
     def calculate_average_reading(self, readings):
         sum = reduce((lambda p, c: p + c), map(lambda r: r.reading, readings), 0)
         return sum / len(readings)
+
+    def get_all(self):
+        plans =  price_plan_repository.get()
+        plans_json = {}
+        for plan in plans:
+            plan_json = plan.to_json()
+            plans_json[plan_json["name"]] = plan_json
+        return plans_json
+
