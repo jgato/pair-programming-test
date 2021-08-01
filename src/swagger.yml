@@ -78,6 +78,18 @@ paths:
           description: Successful read operation
           schema:
             $ref: '#/definitions/ElectricityReadings'
+  /price-plans/:
+    get:
+      operationId: controller.price_plan_controller.get_all
+      tags:
+      - Price Plan List
+      summary: Get the full list of available price plans
+      responses:
+        200:
+          description: Successful get list
+          schema:
+            $ref: '#/definitions/PricePlanComparisons'
+            
   /price-plans/compare-all/{smart_meter_id}:
     get:
       operationId: controller.price_plan_comparator_controller.compare
