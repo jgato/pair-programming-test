@@ -19,7 +19,7 @@ paths:
       operationId: controller.electricity_reading_controller.read
  ```
  * app_initializer.py: it just populate the "database" with
-    * PricePlans: stored statically, so there is no service. It is just a repository 
+    * PricePlans: stored statically, so there is no controller. It is just a repository 
         * Names and descriptions of plans
         * plans are stored as an array of objects of type PricePlan (./src/repository/price_plan_repository)
     * ElectricityReading: 
@@ -134,8 +134,8 @@ Repository implements methods store/get. In this case with a json on memory
 
 Only a repository for price plans. It creates a class of type **PricePlan** (src/domain/price_plan). Which allows to store, and delete priceplan. A price plan contains just the prices
 
-
 ## Data generators
+
 
 ### src/generator/electricity_reading_generator
 
