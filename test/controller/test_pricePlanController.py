@@ -11,6 +11,9 @@ class TestPricePlanController(unittest.TestCase):
         self.client = app.test_client()
         initialize_data()
 
+    def tearDown(self):
+        price_plan_repository.clear()
+
     def test_get_all_price_plans(self):
         res = self.client.get('/price-plans/')
         self.assertEqual(res.status_code, 200)
